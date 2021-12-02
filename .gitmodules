@@ -1,0 +1,3 @@
+[submodule "chilitags"]
+	path = chilitags
+	url = git@github.com:chili-epfl/chilitags.git

@@ -38,6 +38,34 @@ json cornersJSON ( cv::Matx<float, 4, 2> corners ) {
 	return j;
 }
 
+void draw_on_image ( cv::Mat *image, cv::Matx<float, 4, 2> corners ) {
+	int thickness = 3;
+	cv::line(*image, 
+			cv::Point(corners(0,0), corners(0,1)),
+			cv::Point(corners(1,0), corners(1,1)), 
+			cv::Scalar(255,0,0), 
+			thickness, 
+			cv::LINE_4);
+	cv::line(*image, 
+			cv::Point(corners(0,0), corners(0,1)),
+			cv::Point(corners(3,0), corners(3,1)), 
+			cv::Scalar(255,0,0), 
+			thickness, 
+			cv::LINE_4);
+	cv::line(*image, 
+			cv::Point(corners(1,0), corners(1,1)),
+			cv::Point(corners(2,0), corners(2,1)), 
+			cv::Scalar(255,0,0), 
+			thickness, 
+			cv::LINE_4);
+	cv::line(*image, 
+			cv::Point(corners(2,0), corners(2,1)),
+			cv::Point(corners(3,0), corners(3,1)), 
+			cv::Scalar(255,0,0), 
+			thickness, 
+			cv::LINE_4);
+}
+
 int main(int argc, char* argv[])
 {
     if (argc != 2) {
@@ -46,42 +74,16 @@ int main(int argc, char* argv[])
             << "Returns the list of detected tag id's in the image, one per line.\n";
         return 1;
     }
-	int thickness = 3;
 
     cv::Mat image = cv::imread(argv[1]);
     if(image.data) {
 		json j;
         for (const auto &tag : chilitags::Chilitags().find(image)) {
-			j[std::to_string(tag.first)] = cornersJSON(tag.second);
-            // cout << tag.first << "\n";
-			// cout << "tag.second = " << "\n" << " "  << tag.second << "\n" << "\n";
-			// cv::line(image, 
-			// 		cv::Point(tag.second(0,0), tag.second(0,1)),
-			// 	   	cv::Point(tag.second(1,0), tag.second(1,1)), 
-			// 		cv::Scalar(255,0,0), 
-			// 		thickness, 
-			// 		cv::LINE_4);
-			// cv::line(image, 
-			// 		cv::Point(tag.second(0,0), tag.second(0,1)),
-			// 	   	cv::Point(tag.second(3,0), tag.second(3,1)), 
-			// 		cv::Scalar(255,0,0), 
-			// 		thickness, 
-			// 		cv::LINE_4);
-			// cv::line(image, 
-			// 		cv::Point(tag.second(1,0), tag.second(1,1)),
-			// 	   	cv::Point(tag.second(2,0), tag.second(2,1)), 
-			// 		cv::Scalar(255,0,0), 
-			// 		thickness, 
-			// 		cv::LINE_4);
-			// cv::line(image, 
-			// 		cv::Point(tag.second(2,0), tag.second(2,1)),
-			// 	   	cv::Point(tag.second(3,0), tag.second(3,1)), 
-			// 		cv::Scalar(255,0,0), 
-			// 		thickness, 
-			// 		cv::LINE_4);
+			j[ std::to_string( tag.first ) ] = cornersJSON( tag.second );
+			draw_on_image( &image, tag.second );
 		}
 		cout << j << std::endl;
-		// cv::imwrite("out.png", image);
+		cv::imwrite("out.png", image);
         return 0;
     }
     return 1;

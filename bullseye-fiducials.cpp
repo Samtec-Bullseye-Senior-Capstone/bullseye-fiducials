@@ -4,8 +4,8 @@
 #include <string>
 #include <nlohmann/json.hpp>
 
-#include "src/detection.hpp"
-#include "src/visuals.hpp"
+#include "detection.hpp"
+#include "visuals.hpp"
 
 using std::cout;
 using json = nlohmann::json;

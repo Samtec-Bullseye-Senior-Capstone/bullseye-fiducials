@@ -18,7 +18,12 @@ add_subdirectory(chilitags)
 include_directories(chilitags/include)
 include_directories(include)
 
+# create fiducial source library
+file(GLOB_RECURSE fiducials_src src/*.cpp)
+add_library(fiducials_lib ${fiducials_src})
+target_link_libraries(fiducials_lib ${OpenCV_LIBS})
+target_link_libraries(fiducials_lib chilitags_static)
+
 # add bullseye executable
-add_executable( bullseye-fiducials src/bullseye-fiducials.cpp )
-target_link_libraries( bullseye-fiducials chilitags_static )
-target_link_libraries( bullseye-fiducials ${OpenCV_LIBS} )
+add_executable( bullseye-fiducials bullseye-fiducials.cpp )
+target_link_libraries( bullseye-fiducials fiducials_lib )

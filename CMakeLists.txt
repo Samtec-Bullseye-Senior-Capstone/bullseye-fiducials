@@ -16,6 +16,7 @@ add_subdirectory(chilitags)
 
 # include chilitags src
 include_directories(chilitags/include)
+include_directories(include)
 
 # add bullseye executable
 add_executable( bullseye-fiducials src/bullseye-fiducials.cpp )

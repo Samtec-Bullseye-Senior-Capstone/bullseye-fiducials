@@ -86,8 +86,8 @@ int main( int argc, char* argv[] )
 		return 1;
 	}
 	else if ( config.camera == true ) {
-		cout << "Camera not yet implemented.\n";
-		return 1;
+		output_json = detect_from_camera( config.camera_num );
+		std::cout << output_json << std::endl;
 	}
 	else {
 		output_json = detect_from_image( config.input_file );

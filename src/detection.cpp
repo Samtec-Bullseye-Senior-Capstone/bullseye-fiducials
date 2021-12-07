@@ -1,6 +1,8 @@
 #include "detection.hpp"
+#include "capture.hpp"
 
-json cornersJSON ( cv::Matx<float, 4, 2> corners ) {
+json cornersJSON ( cv::Matx<float, 4, 2> corners ) 
+{
 	json j;
 	j["top_left"] = { {"x", corners(0,0)}, {"y", corners(0,1)} };
 	j["top_right"] = { {"x", corners(1,0)}, {"y", corners(1,1)} };
@@ -9,14 +11,27 @@ json cornersJSON ( cv::Matx<float, 4, 2> corners ) {
 	return j;
 }   
 
-json detect_from_image ( string input_path ) {
-    cv::Mat image = cv::imread(input_path);
+json get_fiducials ( cv::Mat image )
+{
 	json j;
-    if(image.data) {
+	if (image.data) 
+	{
         for (const auto &tag : chilitags::Chilitags().find(image)) {
 			j[ std::to_string( tag.first ) ] = cornersJSON( tag.second );
 		}
-		cout << j << std::endl;
-    }
+	}
 	return j;
+}
+
+json detect_from_image ( string input_path ) 
+{
+    cv::Mat image = cv::imread(input_path);
+	return get_fiducials ( image );
+}
+
+json detect_from_camera ( int cameraIndex ) 
+{
+	cv::Mat image = get_frame ( cameraIndex );
+	cv::imshow( "camera", image );
+	return get_fiducials ( image );
 }

@@ -15,5 +15,6 @@ using std::cout;
 
 json cornersJSON ( cv::Matx<float, 4, 2> corners );
 json detect_from_image ( string input_path );
+json detect_from_camera ( int cameraIndex );
 
 #endif

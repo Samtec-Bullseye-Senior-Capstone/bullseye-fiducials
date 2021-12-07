@@ -101,12 +101,19 @@ int main( int argc, char* argv[] )
 	else if ( config.camera == true ) 
 	{
 		output_json = detect_from_camera( config.camera_num, config.visual_config );
-		std::cout << output_json << std::endl;
 	}
 	else 
 	{
 		output_json = detect_from_image( config.input_file, config.visual_config );
 	}
-
+	// print output
+	if ( output_json.is_null() ) 
+	{
+		cout << "{}" << std::endl;
+	}
+	else 
+	{ 
+		std::cout << output_json << std::endl;
+	}
     return 0;
 }

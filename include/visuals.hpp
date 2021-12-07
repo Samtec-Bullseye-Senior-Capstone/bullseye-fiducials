@@ -12,7 +12,20 @@ using json = nlohmann::json;
 using string = std::string;
 using std::cout;
 
-void draw_borders ( string input_file, string output_file, json fiducial_json, bool debug );
-void draw_corner_arrows ( string input_file, string output_file, json fiducial_json, bool debug );
+struct visualConfig {
+    bool output = false;
+	string output_file = "";
+    bool borders = true;
+    bool cornerArrows = false;
+};
+
+void draw_borders ( cv::Mat image,
+					string output_file, 
+					json fiducial_json ); 
+void draw_corner_arrows ( cv::Mat image, 
+						  string output_file, 
+						  json fiducial_json ); 
+void do_visual ( cv::Mat image, visualConfig visual_config, json fiducial_json );
+void print_visual_config ( visualConfig visual_config );
 
 #endif

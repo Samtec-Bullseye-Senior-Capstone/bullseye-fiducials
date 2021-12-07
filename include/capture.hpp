@@ -12,8 +12,7 @@ using string = std::string;
 using std::cout;
 
 cv::Mat get_frame ( int cameraIndex, 
-                    int width = 4065,
-                    int height = 3040 );
-
+                    int width = 0,
+                    int height = 0 );
 
 #endif

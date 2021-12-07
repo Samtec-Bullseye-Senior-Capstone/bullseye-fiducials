@@ -16,22 +16,26 @@ json get_fiducials ( cv::Mat image )
 	json j;
 	if (image.data) 
 	{
-        for (const auto &tag : chilitags::Chilitags().find(image)) {
+        for (const auto &tag : chilitags::Chilitags().find(image)) 
+		{
 			j[ std::to_string( tag.first ) ] = cornersJSON( tag.second );
 		}
 	}
 	return j;
 }
 
-json detect_from_image ( string input_path ) 
+json detect_from_image ( string input_path, visualConfig visual_config ) 
 {
     cv::Mat image = cv::imread(input_path);
-	return get_fiducials ( image );
+	json j = get_fiducials ( image );
+	do_visual ( image, visual_config, j );
+	return j;
 }
 
-json detect_from_camera ( int cameraIndex ) 
+json detect_from_camera ( int cameraIndex, visualConfig visual_config ) 
 {
 	cv::Mat image = get_frame ( cameraIndex );
-	cv::imshow( "camera", image );
-	return get_fiducials ( image );
+	json j = get_fiducials ( image );
+	do_visual ( image, visual_config, j );
+	return j;
 }

@@ -27,3 +27,7 @@ target_link_libraries(fiducials_lib chilitags_static)
 # add bullseye executable
 add_executable( bullseye-fiducials bullseye-fiducials.cpp )
 target_link_libraries( bullseye-fiducials fiducials_lib )
+
+# add bullseye executable
+add_executable( test-undistort src/test/distort-test.cpp )
+target_link_libraries( test-undistort fiducials_lib )

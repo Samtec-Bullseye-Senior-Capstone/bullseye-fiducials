@@ -30,3 +30,16 @@ Options:
 ```
 Note that camera input is not yet supported.
 
+### Current State of Calibration:  
+After building (see above), there will be a `test-undistort` binary. The usage is as follows:
+```
+Usage: test-undistort [image1] [image2] ... [imageN]
+```
+
+I have just been using the sample images I have at `src/test/test_calibration`, so running as follows (from build directory):
+```
+./test-undistort ../src/test/test_calibration/*
+```
+
+
+

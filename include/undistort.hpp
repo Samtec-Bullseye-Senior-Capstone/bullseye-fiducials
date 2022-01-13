@@ -9,7 +9,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/calib3d/calib3d.hpp>
 
-using std::cout;
+using std::string;
 
 std::vector<cv::Point2f> get_chessboard_corners ( cv::Mat image, 
                                                   cv::Size patternSize );
@@ -19,6 +19,7 @@ void refine_pixel_coordinates ( cv::Mat image,
                                 std::vector<cv::Point2f> corners);
 void show_chessboard ( cv::Mat image, 
                        std::vector<cv::Point2f> corners,
-                       cv::Size size );
+                       cv::Size size,
+					   string image_path);
 
 #endif

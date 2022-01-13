@@ -14,7 +14,8 @@ std::vector<cv::Point2f> get_chessboard_corners ( cv::Mat image,
     if ( !found ) 
     {
         std::cout << "Could not find chessboard corners" << std::endl;
-        return corners;
+		std::vector<cv::Point2f> empty;
+        return empty;
     }
 
     return corners;
@@ -52,14 +53,15 @@ void refine_pixel_coordinates ( cv::Mat image,
 
 void show_chessboard ( cv::Mat image, 
                        std::vector<cv::Point2f> corners,
-                       cv::Size size )
+                       cv::Size size,
+					   std::string image_path)
 {
     cv::drawChessboardCorners ( image, 
                                 size,
                                 corners,
                                 true );
 
-    cv::imshow ( "drawChessboardCorners", image );
+    cv::imshow ( image_path, image );
     cv::waitKey(0);
     cv::destroyAllWindows();
 }

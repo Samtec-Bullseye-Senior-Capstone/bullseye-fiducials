@@ -141,7 +141,7 @@ def main(args):
         results[name] = {}
         for image_tup in images:
             image_name, image_path = image_tup
-            print(f"Doing {name} detection on {image_name}... ", end="")
+            print(f"Doing {name} detection on {image_name}... ", end="", flush=True)
             detector = detector_type(fid_size_px=ground_truth[image_name][0]['size']) \
                 if image_name in ground_truth else detector_type()
             results[name][image_name] = {"detector_results": detector.detect(image_path)}

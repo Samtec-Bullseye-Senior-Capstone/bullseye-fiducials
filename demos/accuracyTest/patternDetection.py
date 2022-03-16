@@ -1,3 +1,4 @@
+import sys
 import cv2
 import numpy as np
 from demos.accuracyTest.utils.binaryBlobDetector import BinaryBlobDetector
@@ -66,3 +67,14 @@ class PatternDetector:
                  "center_y": blob[0][1],
                  "size": self.inner_diam,
                  "threshold": threshold} for blob in bbox_list]
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python3 demos/accuracyTest/patternDetection.py <image/path.png>")
+        sys.exit(1)
+    print(f"Doing PatternDetection on {sys.argv[1]}")
+    detector = PatternDetector()
+    print(detector.detect(sys.argv[1]))
+
+

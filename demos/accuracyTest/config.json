@@ -1,0 +1,28 @@
+{
+    "simpleBlobDetector": {
+        "filterByArea": {
+            "enabled": true,
+            "minArea": 300,
+            "maxArea": 4000
+        },
+        "filterByCircularity": {
+            "enabled": false,
+            "minCircularity": 0.1,
+            "maxCircularity": 1.0 
+        },
+        "filterByConvexity": {
+            "enabled": false,
+            "minConvexity": 0.1,
+            "maxConvexity": 1.0
+        },
+        "filterByInertia": {
+            "enabled": false,
+            "minInertiaRatio": 0.1,
+            "maxInertiaRatio": 1.0
+        },
+        "filterByColor": {
+            "enabled": false,
+            "blobColor": 0
+        }
+    }
+}

@@ -1,2 +1,5 @@
-build/
+build*/
 *.swp
+/tmp/
+.idea/
+CMakeFiles/

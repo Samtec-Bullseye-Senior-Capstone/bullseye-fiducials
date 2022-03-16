@@ -15,7 +15,7 @@ def arg_parse():
     parser.add_argument("-i", "--input_image", required=True)
 
     # filter by area
-    parser.add_argument("--filterByArea", default=True, action='store_true', help="Extracted blobs have an area between minArea (inclusive) and maxArea (exclusive).")
+    parser.add_argument("--filterByArea", default=False, action='store_true', help="Extracted blobs have an area between minArea (inclusive) and maxArea (exclusive).")
     parser.add_argument('--minArea', type=int, default=300)
     parser.add_argument("--maxArea", type=int, default=4000)
 
@@ -68,19 +68,22 @@ def get_params(args):
 
 def main(args, params):
     if not str(args.input_image).endswith(".png") and not str(args.input_image).endswith(".jpg"):
-        print(f"Invalid file type: {input_image}")
+        print(f"Invalid file type: {args.input_image}")
         sys.exit(1)
 
+    print(f"minCircularity: {params.minCircularity}")
     image = cv2.imread(args.input_image)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     overlay = image.copy()
     detector = cv2.SimpleBlobDetector_create(params)
     keypoints = detector.detect(image)
     for k in keypoints:
-        cv2.circle(overlay, (int(k.pt[0]), int(k.pt[1])), int(k.size/2), (0, 0, 255), -1)
+        cv2.circle(overlay, (int(k.pt[0]), int(k.pt[1])), int(k.size/2), (0, 0, 255), 1)
         cv2.line(overlay, (int(k.pt[0])-20, int(k.pt[1])), (int(k.pt[0])+20, int(k.pt[1])), (0,0,0), 3)
         cv2.line(overlay, (int(k.pt[0]), int(k.pt[1])-20), (int(k.pt[0]), int(k.pt[1])+20), (0,0,0), 3)
         if args.show_area:
-            cv2.putText(overlay, f"{math.pi*((k.size/2)**2)}", (int(k.pt[0]), int(k.pt[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2, cv2.LINE_AA)
+            # cv2.putText(overlay, f"{math.pi*((k.size/2)**2)}", (int(k.pt[0]), int(k.pt[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2, cv2.LINE_AA)
+            cv2.putText(overlay, f"Diameter: {k.size}", (int(k.pt[0]), int(k.pt[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2, cv2.LINE_AA)
     opacity = 0.5
     cv2.addWeighted(overlay, opacity, image, 1-opacity, 0, image)
 

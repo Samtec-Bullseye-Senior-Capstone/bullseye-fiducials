@@ -1,0 +1,83 @@
+{
+    "fiducial_centered.png": [
+        {
+            "topLeft_x": 1587,
+            "topLeft_y": 1036,
+            "size": 572,
+            "center_x": 1873.0,
+            "center_y": 1322.0
+        }
+    ],
+    "fiducial_clear.png": [
+        {
+            "topLeft_x": 1713,
+            "topLeft_y": 776,
+            "size": 571,
+            "center_x": 1998.5,
+            "center_y": 1061.5
+        }
+    ],
+    "fid_centered0.png": [
+        {
+            "topLeft_x": 1536,
+            "topLeft_y": 1057,
+            "size": 620,
+            "center_x": 1846.0,
+            "center_y": 1367.0
+        }
+    ],
+    "fid_centered1.png": [
+        {
+            "topLeft_x": 1535,
+            "topLeft_y": 1057,
+            "size": 622,
+            "center_x": 1846.0,
+            "center_y": 1368.0
+        }
+    ],
+    "fid_dark3.png": [
+        {
+            "topLeft_x": 2745,
+            "topLeft_y": 1193,
+            "size": 621,
+            "center_x": 3055.5,
+            "center_y": 1503.5
+        }
+    ],
+    "fid_left0.png": [
+        {
+            "topLeft_x": 683,
+            "topLeft_y": 1247,
+            "size": 622,
+            "center_x": 994.0,
+            "center_y": 1558.0
+        }
+    ],
+    "fid_light0.png": [
+        {
+            "topLeft_x": 2741,
+            "topLeft_y": 1192,
+            "size": 624,
+            "center_x": 3053.0,
+            "center_y": 1504.0
+        }
+    ],
+    "fid_light2.png": [
+        {
+            "topLeft_x": 1739,
+            "topLeft_y": 1008,
+            "size": 624,
+            "center_x": 2051.0,
+            "center_y": 1320.0
+        }
+    ],
+    "fid_right0.png": [
+        {
+            "topLeft_x": 2734,
+            "topLeft_y": 1219,
+            "size": 622,
+            "center_x": 3045.0,
+            "center_y": 1530.0
+        }
+    ]
+}
